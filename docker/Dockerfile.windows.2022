@@ -8,6 +8,15 @@ RUN `
   && tar -C c:\git -oxzf tmp/file.zip`
   && rmdir /Q /S tmp
 
+RUN `
+  mkdir tmp`
+  && curl -sSfLo tmp/file.zip https://github.com/git-lfs/git-lfs/releases/download/v3.2.0/git-lfs-windows-amd64-v3.2.0.zip `
+  && tar -C c:\git\usr\bin -oxzf tmp/file.zip`
+  && rmdir /Q /S tmp
+
+# fatal: the remote end hung up unexpectedly
+RUN git config --global http.postBuffer 524288000
+
 RUN setx PATH "%PATH%;/git/cmd;/git/mingw64/bin;/git/usr/bin"
 
 ADD windows/* /bin/
