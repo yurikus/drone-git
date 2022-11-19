@@ -88,7 +88,7 @@ case $DRONE_COMMIT_REF in
 esac
 
 git_clone_retry(){
-	retries="${PLUGIN_RETRIES:-0}"
+	retries="${PLUGIN_RETRIES:-2}"
 	if [ -n "${retries##*[0-9]*}" ] || [ "${retries}" -lt 0 ]; then
 		echo "PLUGIN_RETRIES defined but is not a number: ${retries}" >&2
 		exit 1
